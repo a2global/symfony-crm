@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="boogs")
+ * @ORM\Table(name="writers")
  */
-class Boog
+class Writer
 {
 	/**
 	 * @ORM\Id()
@@ -20,38 +20,38 @@ class Boog
 	/**
 	* @ORM\Column(type="string", length=255, nullable=true)
 	*/
-	private $title;
+	private $firstName;
 	
 	/**
 	* @ORM\Column(type="string", length=255, nullable=true)
 	*/
-	private $about;
+	private $lastName;
 	
 	public function getId()
 	{
 		return $this->id;
 	}
 	
-	public function getTitle()
+	public function getFirstName()
 	{
-		return $this->title;
+		return $this->firstName;
 	}
 	
-	public function setTitle($value): self
+	public function setFirstName($value): self
 	{
-		$this->title = $value;
+		$this->firstName = $value;
 	
 		return $this;
 	}
 	
-	public function getAbout()
+	public function getLastName()
 	{
-		return $this->about;
+		return $this->lastName;
 	}
 	
-	public function setAbout($value): self
+	public function setLastName($value): self
 	{
-		$this->about = $value;
+		$this->lastName = $value;
 	
 		return $this;
 	}
