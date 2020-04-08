@@ -20,38 +20,21 @@ class Writer
 	/**
 	* @ORM\Column(type="string", length=255, nullable=true)
 	*/
-	private $firstName;
-	
-	/**
-	* @ORM\Column(type="string", length=255, nullable=true)
-	*/
-	private $lastName;
+	private $writer;
 	
 	public function getId()
 	{
 		return $this->id;
 	}
 	
-	public function getFirstName()
+	public function getWriter()
 	{
-		return $this->firstName;
+		return $this->writer;
 	}
 	
-	public function setFirstName($value): self
+	public function setWriter($value): self
 	{
-		$this->firstName = $value;
-	
-		return $this;
-	}
-	
-	public function getLastName()
-	{
-		return $this->lastName;
-	}
-	
-	public function setLastName($value): self
-	{
-		$this->lastName = $value;
+		$this->writer = $value;
 	
 		return $this;
 	}

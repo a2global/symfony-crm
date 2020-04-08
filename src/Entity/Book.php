@@ -20,21 +20,55 @@ class Book
 	/**
 	* @ORM\Column(type="string", length=255, nullable=true)
 	*/
-	private $title;
+	private $aaa;
+	
+	/**
+	* @ORM\Column(type="string", length=255, nullable=true)
+	*/
+	private $cc;
+	
+	/**
+	* @ORM\Column(type="string", length=255, nullable=true)
+	*/
+	private $bbbb;
 	
 	public function getId()
 	{
 		return $this->id;
 	}
 	
-	public function getTitle()
+	public function getAaa()
 	{
-		return $this->title;
+		return $this->aaa;
 	}
 	
-	public function setTitle($value): self
+	public function setAaa($value): self
 	{
-		$this->title = $value;
+		$this->aaa = $value;
+	
+		return $this;
+	}
+	
+	public function getCc()
+	{
+		return $this->cc;
+	}
+	
+	public function setCc($value): self
+	{
+		$this->cc = $value;
+	
+		return $this;
+	}
+	
+	public function getBbbb()
+	{
+		return $this->bbbb;
+	}
+	
+	public function setBbbb($value): self
+	{
+		$this->bbbb = $value;
 	
 		return $this;
 	}
