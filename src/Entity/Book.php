@@ -16,60 +16,65 @@ class Book
 	 * @ORM\Column(type="integer")
 	 */
 	private $id;
-	
+
 	/**
-	* @ORM\Column(type="string", length=255, nullable=true)
-	*/
-	private $aaa;
-	
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $title;
+
 	/**
-	* @ORM\Column(type="string", length=255, nullable=true)
-	*/
-	private $cc;
-	
+	 * @ORM\Column(type="boolean", nullable=true)
+	 */
+	private $isBestseller;
+
 	/**
-	* @ORM\Column(type="string", length=255, nullable=true)
-	*/
-	private $bbbb;
-	
+	 * @ORM\Column(type="date", nullable=true)
+	 */
+	private $publishedAt;
+
 	public function getId()
 	{
 		return $this->id;
 	}
-	
-	public function getAaa()
+
+	public function getTitle()
 	{
-		return $this->aaa;
+		return $this->title;
 	}
 	
-	public function setAaa($value): self
+	public function setTitle($value): self
 	{
-		$this->aaa = $value;
+		$this->title = $value;
 	
 		return $this;
 	}
-	
-	public function getCc()
+
+	public function getIsBestseller()
 	{
-		return $this->cc;
+		return $this->isBestseller;
 	}
 	
-	public function setCc($value): self
+	public function setIsBestseller($value): self
 	{
-		$this->cc = $value;
+		$this->isBestseller = $value;
 	
 		return $this;
 	}
-	
-	public function getBbbb()
+
+	public function getPublishedAt()
 	{
-		return $this->bbbb;
+		return $this->publishedAt;
 	}
 	
-	public function setBbbb($value): self
+	public function setPublishedAt($value): self
 	{
-		$this->bbbb = $value;
+		$this->publishedAt = $value;
 	
 		return $this;
+	}
+
+	public function __toString()
+	{
+		return sprintf('%s #%s', 'Book', $this->getId());
 	}
 }
