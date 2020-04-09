@@ -32,6 +32,22 @@ class Book
 	 */
 	private $publishedAt;
 
+	/**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $aaaa;
+
+	const ASD_CHOICES = [
+		'11',
+		'22',
+		'33',
+	];
+	
+	/**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $asd;
+
 	public function getId()
 	{
 		return $this->id;
@@ -69,6 +85,30 @@ class Book
 	public function setPublishedAt($value): self
 	{
 		$this->publishedAt = $value;
+	
+		return $this;
+	}
+
+	public function getAaaa()
+	{
+		return $this->aaaa;
+	}
+	
+	public function setAaaa($value): self
+	{
+		$this->aaaa = $value;
+	
+		return $this;
+	}
+
+	public function getAsd()
+	{
+		return $this->asd;
+	}
+	
+	public function setAsd($value): self
+	{
+		$this->asd = $value;
 	
 		return $this;
 	}
