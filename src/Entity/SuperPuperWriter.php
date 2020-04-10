@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="writers")
+ * @ORM\Table(name="super_puper_writers")
  */
-class Writer
+class SuperPuperWriter
 {
 	/**
 	 * @ORM\Id()
@@ -16,17 +16,17 @@ class Writer
 	 * @ORM\Column(type="integer")
 	 */
 	private $id;
-	
+
 	/**
-	* @ORM\Column(type="string", length=255, nullable=true)
-	*/
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
 	private $writer;
-	
+
 	public function getId()
 	{
 		return $this->id;
 	}
-	
+
 	public function getWriter()
 	{
 		return $this->writer;
@@ -37,5 +37,10 @@ class Writer
 		$this->writer = $value;
 	
 		return $this;
+	}
+
+	public function __toString()
+	{
+		return sprintf('%s #%s', 'Super puper writer', $this->getId());
 	}
 }

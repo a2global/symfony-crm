@@ -10,6 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Book
 {
+	const GENRE_CHOICES = [
+		'Rock',
+		'Rap',
+		'Trance',
+	];
+
 	/**
 	 * @ORM\Id()
 	 * @ORM\GeneratedValue()
@@ -36,6 +42,12 @@ class Book
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
 	private $genre;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="SuperPuperWriter")
+	 * @ORM\JoinColumn(name="super_puper_writer_id", referencedColumnName="id")
+	 */
+	private $theAuthor;
 
 	public function getId()
 	{
@@ -86,6 +98,18 @@ class Book
 	public function setGenre($value): self
 	{
 		$this->genre = $value;
+	
+		return $this;
+	}
+
+	public function getTheAuthor()
+	{
+		return $this->theAuthor;
+	}
+	
+	public function setTheAuthor($value): self
+	{
+		$this->theAuthor = $value;
 	
 		return $this;
 	}
