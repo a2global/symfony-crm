@@ -18,11 +18,6 @@ class Book
 	private $id;
 
 	/**
-	 * @ORM\Column(type="string", length=255, nullable=true)
-	 */
-	private $title;
-
-	/**
 	 * @ORM\Column(type="boolean", nullable=true)
 	 */
 	private $isBestseller;
@@ -35,34 +30,16 @@ class Book
 	/**
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
-	private $aaaa;
+	private $pages;
 
-	const ASD_CHOICES = [
-		'11',
-		'22',
-		'33',
-	];
-	
 	/**
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
-	private $asd;
+	private $genre;
 
 	public function getId()
 	{
 		return $this->id;
-	}
-
-	public function getTitle()
-	{
-		return $this->title;
-	}
-	
-	public function setTitle($value): self
-	{
-		$this->title = $value;
-	
-		return $this;
 	}
 
 	public function getIsBestseller()
@@ -89,26 +66,26 @@ class Book
 		return $this;
 	}
 
-	public function getAaaa()
+	public function getPages()
 	{
-		return $this->aaaa;
+		return $this->pages;
 	}
 	
-	public function setAaaa($value): self
+	public function setPages($value): self
 	{
-		$this->aaaa = $value;
+		$this->pages = $value;
 	
 		return $this;
 	}
 
-	public function getAsd()
+	public function getGenre()
 	{
-		return $this->asd;
+		return $this->genre;
 	}
 	
-	public function setAsd($value): self
+	public function setGenre($value): self
 	{
-		$this->asd = $value;
+		$this->genre = $value;
 	
 		return $this;
 	}
