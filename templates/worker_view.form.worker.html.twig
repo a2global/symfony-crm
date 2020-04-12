@@ -1,0 +1,38 @@
+<form action="{{ form.url }}" method="POST" class="form-horizontal">
+
+    <div class="col-lg-4">
+        {% for fieldName in ['idCode', 'firstName', 'lastName', 'gender', 'birthday', 'idNumber', 'idProvider', 'education'] %}
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{ form.fields[fieldName].title }}</label>
+                <div class="col-sm-8">
+                    {{ form_field(form.fields[fieldName]) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-lg-4">
+        {% for fieldName in ['phone', 'nationality', 'citizenship', 'visa', 'addressRegistration', 'addressCzech', 'invitation', 'attachment'] %}
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{ form.fields[fieldName].title }}</label>
+                <div class="col-sm-8">
+                    {{ form_field(form.fields[fieldName]) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-lg-4">
+        {% for fieldName in ['details', 'createdBy', 'informationVasya', 'activity'] %}
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{ form.fields[fieldName].title }}</label>
+                <div class="col-sm-8">
+                    {{ form_field(form.fields[fieldName]) }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col-xs-offset-8 col-sm-offset-9 col-md-offset-10 col-lg-offset-6">
+            <input type="submit"
+                   class="btn btn-primary btn-lg btn-block"
+                   value="Save">
+        </div>
+    </div>
+</form>

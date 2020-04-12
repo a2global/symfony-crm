@@ -1,0 +1,11 @@
+{% extends '@A2CRM/layout.html.twig' %}
+
+{% block content %}
+
+    {% include '@A2CRM/object/object.form.html.twig' with {'form': bookForm }%}
+
+    <hr>
+
+    {% include 'worker_view.form.worker.html.twig' with {'form': workerForm } %}
+
+{% endblock %}
