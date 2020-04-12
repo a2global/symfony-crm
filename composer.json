@@ -82,6 +82,6 @@
     },
     "repositories": [{
         "type": "path",
-        "url": "../A2CRMBundle"
+        "url": "../crm-bundle"
     }]
 }

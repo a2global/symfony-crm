@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d3095c3f1938348de4abd823a0fdc66",
+    "content-hash": "2f8f16fc93dc79e0ecdd5c6a20b7b06a",
     "packages": [
         {
             "name": "a2global/crm-bundle",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "../A2CRMBundle",
-                "reference": "9693f3410749a417344f143b4d32b2b3a515024f"
+                "url": "../crm-bundle",
+                "reference": "893c00096e1d7d1bc6314999e63b035d3e899276"
             },
             "require": {
                 "doctrine/inflector": "^1.3",
@@ -6085,6 +6085,7 @@
                 "monolog",
                 "productivity"
             ],
+            "abandoned": true,
             "time": "2019-10-24T07:13:31+00:00"
         },
         {
