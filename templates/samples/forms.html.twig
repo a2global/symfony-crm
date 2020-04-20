@@ -1,0 +1,24 @@
+{% extends '@A2CRM/layout.html.twig' %}
+
+{% block page_title %}
+    Samples — Forms
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="box">
+                <div class="box-body">
+                    {% include '@A2CRM/object/object.form.horizontal.html.twig' with {'form': clientCreateForm} %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="box">
+                <div class="box-body">
+                    {% include '@A2CRM/object/object.form.horizontal.html.twig' with {'form': clientUpdateForm} %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -60,4 +60,9 @@ class Company
     {
         $this->place = $place;
     }
+
+    public function __toString()
+    {
+        return sprintf('%s', $this->getName());
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use A2Global\CRMBundle\Factory\DatasheetFactory;
 use A2Global\CRMBundle\Factory\FormFactory;
+use App\Entity\Client;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,5 +55,19 @@ class DefaultController extends AbstractController
         return $this->render('@A2CRM/samples/homepage.html.twig', [
             'arrayDatasheet' => $arrayDatasheet,
         ]);
+    }
+
+    /** @Route("/sample/form", name="sample_form") */
+    public function sampleForm()
+    {
+        $clientCreateForm = $this->formFactory->getFor(new Client());
+        $client = $this->entityManager->getRepository('App:Client')->find(1);
+        $clientUpdateForm = $this->formFactory->getFor($client);
+
+        return $this->render('samples/forms.html.twig', [
+            'clientCreateForm' => $clientCreateForm,
+            'clientUpdateForm' => $clientUpdateForm,
+        ]);
+
     }
 }

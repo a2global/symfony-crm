@@ -10,6 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Client
 {
+    const CHOICES_CHOICE_GENDER = [
+        'Male',
+        'Female',
+        'Other',
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -28,87 +34,228 @@ class Client
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $gender;
+    private $stringUsername;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $birthday;
+    private $integerAge;
+
+    /**
+     * @ORM\Column(type="float", nullable=true, nullable=true)
+     */
+    private $floatWeight;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $choiceGender;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $booleanMarried;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dateBirthday;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $datetimeRegisteredAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="Company")
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
-    protected $company;
+    protected $relationCompany;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFirstName(): ?string
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
     {
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    /**
+     * @param mixed $firstName
+     * @return Client
+     */
+    public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getGender(): ?string
-    {
-        return $this->gender;
-    }
-
-    public function setGender(string $gender): self
-    {
-        $this->gender = $gender;
-
-        return $this;
-    }
-
-    public function getBirthday(): ?\DateTimeInterface
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(\DateTimeInterface $birthday): self
-    {
-        $this->birthday = $birthday;
-
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getCompany()
+    public function getLastName()
     {
-        return $this->company;
+        return $this->lastName;
     }
 
     /**
-     * @param mixed $company
+     * @param mixed $lastName
+     * @return Client
      */
-    public function setCompany($company): void
+    public function setLastName($lastName)
     {
-        $this->company = $company;
+        $this->lastName = $lastName;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStringUsername()
+    {
+        return $this->stringUsername;
+    }
+
+    /**
+     * @param mixed $stringUsername
+     * @return Client
+     */
+    public function setStringUsername($stringUsername)
+    {
+        $this->stringUsername = $stringUsername;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIntegerAge()
+    {
+        return $this->integerAge;
+    }
+
+    /**
+     * @param mixed $integerAge
+     * @return Client
+     */
+    public function setIntegerAge($integerAge)
+    {
+        $this->integerAge = $integerAge;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFloatWeight()
+    {
+        return $this->floatWeight;
+    }
+
+    /**
+     * @param mixed $floatWeight
+     * @return Client
+     */
+    public function setFloatWeight($floatWeight)
+    {
+        $this->floatWeight = $floatWeight;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChoiceGender()
+    {
+        return $this->choiceGender;
+    }
+
+    /**
+     * @param mixed $choiceGender
+     * @return Client
+     */
+    public function setChoiceGender($choiceGender)
+    {
+        $this->choiceGender = $choiceGender;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBooleanMarried()
+    {
+        return $this->booleanMarried;
+    }
+
+    /**
+     * @param mixed $booleanMarried
+     * @return Client
+     */
+    public function setBooleanMarried($booleanMarried)
+    {
+        $this->booleanMarried = $booleanMarried;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateBirthday()
+    {
+        return $this->dateBirthday;
+    }
+
+    /**
+     * @param mixed $dateBirthday
+     * @return Client
+     */
+    public function setDateBirthday($dateBirthday)
+    {
+        $this->dateBirthday = $dateBirthday;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatetimeRegisteredAt()
+    {
+        return $this->datetimeRegisteredAt;
+    }
+
+    /**
+     * @param mixed $datetimeRegisteredAt
+     * @return Client
+     */
+    public function setDatetimeRegisteredAt($datetimeRegisteredAt)
+    {
+        $this->datetimeRegisteredAt = $datetimeRegisteredAt;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRelationCompany()
+    {
+        return $this->relationCompany;
+    }
+
+    /**
+     * @param mixed $relationCompany
+     * @return Client
+     */
+    public function setRelationCompany($relationCompany)
+    {
+        $this->relationCompany = $relationCompany;
+        return $this;
     }
 }
