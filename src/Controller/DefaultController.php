@@ -49,8 +49,7 @@ class DefaultController extends AbstractController
             ->setField('company', 'Co Title')
             ->setField('company.name', 'Co Title')
             ->setField('company.place', 'Place')
-            ->setField('company.place.street', 'Street')
-        ;
+            ->setField('company.place.street', 'Street');
 
         return $this->render('@A2CRM/samples/homepage.html.twig', [
             'arrayDatasheet' => $arrayDatasheet,
