@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use A2Global\CRMBundle\Factory\DatasheetFactory;
 use A2Global\CRMBundle\Factory\FormFactory;
-use App\Entity\Book;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,10 +45,11 @@ class DefaultController extends AbstractController
 
         $arrayDatasheet = $this->datasheetFactory->createNew()
             ->setQueryBuilder($queryBuilder)
-            ->setField('company', 'Co Title')
-            ->setField('company.name', 'Co Title')
-            ->setField('company.place', 'Place')
-            ->setField('company.place.street', 'Street');
+            ->removeField('Company')
+//            ->addField('company', 'Co Title')
+//            ->addField('company.name', 'Co Title')
+//            ->addField('company.place', 'Place')
+            ->addField('company.place.street', 'Street');
 
         return $this->render('@A2CRM/samples/homepage.html.twig', [
             'arrayDatasheet' => $arrayDatasheet,
