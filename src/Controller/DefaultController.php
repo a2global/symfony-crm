@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use A2Global\CRMBundle\Factory\DatasheetFactory;
 use A2Global\CRMBundle\Factory\FormFactory;
 use App\Entity\Book;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,13 +16,17 @@ class DefaultController extends AbstractController
 
     private $formFactory;
 
+    private $datasheetFactory;
+
     public function __construct(
         EntityManagerInterface $entityManager,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        DatasheetFactory $datasheetFactory
     )
     {
         $this->entityManager = $entityManager;
         $this->formFactory = $formFactory;
+        $this->datasheetFactory = $datasheetFactory;
     }
 
     /** @Route("/", name="homepage") */
@@ -32,19 +38,19 @@ class DefaultController extends AbstractController
     /** @Route("/test", name="test") */
     public function test()
     {
-        $worker = $this->entityManager->getRepository('App:Worker')->find(7);
-        $workerForm = $this->formFactory->getFor($worker);
-        $bookForm = $this->formFactory->getFor(new Book());
+        /** @var QueryBuilder $queryBuilder */
+        $queryBuilder = $this->entityManager->getRepository('App:Client')->createQueryBuilder('c');
+        $queryBuilder
+            ->andWhere('w.birthday < :date')
+            ->setParameter('date', '2020-01-01');
 
-        return $this->render('test.html.twig', [
-            'workerForm' => $workerForm,
-            'bookForm' => $bookForm,
+        $arrayDatasheet = $this->datasheetFactory->createNew()
+            ->setQueryBuilder($queryBuilder)
+//            ->setShowDebug(true)
+            ->setFields('id', 'gender', 'firstName', 'lastName', 'birthday');
+
+        return $this->render('@A2CRM/samples/homepage.html.twig', [
+            'arrayDatasheet' => $arrayDatasheet,
         ]);
-    }
-
-    /** @Route("/sample/datasheet", name="datasheet") */
-    public function datasheet()
-    {
-        return $this->render('homepage.html.twig');
     }
 }
