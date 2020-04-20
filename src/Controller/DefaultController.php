@@ -40,14 +40,17 @@ class DefaultController extends AbstractController
     {
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = $this->entityManager->getRepository('App:Client')->createQueryBuilder('c');
-        $queryBuilder
-            ->andWhere('w.birthday < :date')
-            ->setParameter('date', '2020-01-01');
+//        $queryBuilder
+//            ->andWhere('w.birthday < :date')
+//            ->setParameter('date', '2020-01-01');
 
         $arrayDatasheet = $this->datasheetFactory->createNew()
             ->setQueryBuilder($queryBuilder)
-//            ->setShowDebug(true)
-            ->setFields('id', 'gender', 'firstName', 'lastName', 'birthday');
+            ->setField('company', 'Co Title')
+            ->setField('company.name', 'Co Title')
+            ->setField('company.place', 'Place')
+            ->setField('company.place.street', 'Street')
+        ;
 
         return $this->render('@A2CRM/samples/homepage.html.twig', [
             'arrayDatasheet' => $arrayDatasheet,
