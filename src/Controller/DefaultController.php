@@ -35,7 +35,7 @@ class DefaultController extends AbstractController
         return $this->render('homepage.html.twig');
     }
 
-    /** @Route("/test", name="test") */
+    /** @Route("/sample/datasheet", name="test") */
     public function test()
     {
         /** @var QueryBuilder $queryBuilder */
@@ -46,11 +46,13 @@ class DefaultController extends AbstractController
 
         $arrayDatasheet = $this->datasheetFactory->createNew()
             ->setQueryBuilder($queryBuilder)
-            ->removeField('Company')
+            ->removeField('relationCompany')
 //            ->addField('company', 'Co Title')
 //            ->addField('company.name', 'Co Title')
 //            ->addField('company.place', 'Place')
-            ->addField('company.place.street', 'Street');
+            ->addField('relationCompany.place.street', 'Street')
+            ->addField('relationCompany.place.house', 'House')
+        ;
 
         return $this->render('@A2CRM/samples/homepage.html.twig', [
             'arrayDatasheet' => $arrayDatasheet,
