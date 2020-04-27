@@ -47,9 +47,6 @@ class DefaultController extends AbstractController
         $arrayDatasheet = $this->datasheetFactory->createNew()
             ->setQueryBuilder($queryBuilder)
             ->removeField('relationCompany')
-//            ->addField('company', 'Co Title')
-//            ->addField('company.name', 'Co Title')
-//            ->addField('company.place', 'Place')
             ->addField('relationCompany.place.street', 'Street')
             ->addField('relationCompany.place.house', 'House')
         ;
