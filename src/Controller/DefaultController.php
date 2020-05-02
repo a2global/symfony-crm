@@ -49,6 +49,9 @@ class DefaultController extends AbstractController
             ->removeField('relationCompany')
             ->addField('relationCompany.place.street', 'Street')
             ->addField('relationCompany.place.house', 'House')
+            ->addSummaryRow([
+                'integerAge' => 999,
+            ])
         ;
 
         return $this->render('@A2CRM/samples/homepage.html.twig', [
