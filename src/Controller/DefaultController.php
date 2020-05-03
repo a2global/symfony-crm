@@ -52,7 +52,7 @@ class DefaultController extends AbstractController
             ->addSummaryRow([
                 'integerAge' => 999,
             ])
-            ->addTranslationPrefix('lalala');
+            ->addTranslationPrefix('Prefix');
         ;
 
         return $this->render('@A2CRM/samples/homepage.html.twig', [
