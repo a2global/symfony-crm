@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use A2Global\CRMBundle\Factory\DatasheetFactory;
 use A2Global\CRMBundle\Factory\FormFactory;
-use App\Entity\Client;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
