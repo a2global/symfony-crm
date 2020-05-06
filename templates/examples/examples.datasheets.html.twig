@@ -2,16 +2,16 @@
 
 {% block content %}
 
-{#    <div class="box">#}
-{#        <div class="box-header">Simple datasheet</div>#}
-{#        <div class="box-body">{{ datasheet(simpleDatasheet) }}</div>#}
+    <div class="box">
+        <div class="box-header">Simple datasheet</div>
+        <div class="box-body">{{ datasheet(simpleDatasheet) }}</div>
 {#        <div class="box-footer">{{ pagination(simpleDatasheet) }}</div>#}
-{#    </div>#}
+    </div>
 
     <div class="box">
         <div class="box-header">Advanced datasheet</div>
         <div class="box-body">{{ datasheet(advancedDatasheet) }}</div>
-        <div class="box-footer">{{ pagination(advancedDatasheet) }}</div>
+{#        <div class="box-footer">{{ pagination(advancedDatasheet) }}</div>#}
     </div>
 
 {%  endblock %}
