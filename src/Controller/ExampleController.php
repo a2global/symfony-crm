@@ -27,7 +27,19 @@ class ExampleController extends AbstractController
     public function datasheetsAction()
     {
         /**
-         * Simple datasheet
+         * Array datasheet
+         */
+
+        $arrayDatasheet = $this->datasheetFactory
+            ->createNew()
+            ->setData([
+                ['id' => 1, 'name' => 'John', 'age' => '32'],
+                ['id' => 2, 'name' => 'David', 'age' => '24'],
+                ['id' => 3, 'name' => 'Peter', 'age' => '28'],
+            ]);
+
+        /**
+         * Query builder datasheet
          *
          * Create queryBuilder from repository and define alias, only object fields will be available.
          * In this case you may call related fields in format: writer.address.street
@@ -37,15 +49,15 @@ class ExampleController extends AbstractController
             ->getRepository('App:Book')
             ->createQueryBuilder('b');
 
-        $simpleDatasheet = $this->datasheetFactory
+        $queryBuilderDatasheet = $this->datasheetFactory
             ->createNew()
             ->setQueryBuilder($queryBuilder);
 
         /**
-         * Advanced datasheet
-
+         * Advanced query builder datasheet
+         *
          * Create queryBuilder and select additional fields (not only from Object)
-         * In this case you may can not call related fields in format: writer.address.street,
+         * In this case you can not call related fields in format: writer.address.street,
          * you must select it in DQL manually: ->addSelect('another_alias.field_name')
          */
 
@@ -57,7 +69,7 @@ class ExampleController extends AbstractController
             ->addSelect('b.title')
             ->join('w.books', 'b');
 
-        $advancedDatasheet = $this->datasheetFactory
+        $advancedQueryBuilderDatasheet = $this->datasheetFactory
             ->createNew()
             ->setQueryBuilder($queryBuilder);
 
@@ -66,8 +78,9 @@ class ExampleController extends AbstractController
          */
 
         return $this->render('examples/examples.datasheets.html.twig', [
-            'simpleDatasheet' => $simpleDatasheet,
-            'advancedDatasheet' => $advancedDatasheet,
+            'arrayDatasheet' => $arrayDatasheet,
+            'queryBuilderDatasheet' => $queryBuilderDatasheet,
+            'advancedQueryBuilderDatasheet' => $advancedQueryBuilderDatasheet,
         ]);
     }
 }
