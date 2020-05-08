@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use A2Global\CRMBundle\Datasheet\FilterableEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
-class Book
+class Book implements FilterableEntity
 {
     /**
      * @ORM\Id()
@@ -51,6 +52,11 @@ class Book
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getFilterField()
+    {
+        return 'title';
     }
 
     public function getTitle(): ?string
@@ -112,4 +118,5 @@ class Book
 
         return $this;
     }
+
 }
