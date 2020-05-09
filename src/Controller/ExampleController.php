@@ -51,7 +51,8 @@ class ExampleController extends AbstractController
 
         $queryBuilderDatasheet = $this->datasheetFactory
             ->createNew()
-            ->setQueryBuilder($queryBuilder);
+            ->setQueryBuilder($queryBuilder)
+            ->setFieldOptions('author', ['filterBy' => 'name']);
 
         /**
          * Advanced query builder datasheet

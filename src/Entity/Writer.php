@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use A2Global\CRMBundle\Datasheet\FilterableEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WriterRepository")
  */
-class Writer implements FilterableEntity
+class Writer
 {
     /**
      * @ORM\Id()
@@ -33,11 +32,6 @@ class Writer implements FilterableEntity
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFilterField()
-    {
-        return 'name';
     }
 
     public function getName(): ?string
