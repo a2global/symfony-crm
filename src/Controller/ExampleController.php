@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use A2Global\CRMBundle\Datasheet\Datasheet;
 use A2Global\CRMBundle\Factory\DatasheetFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,41 +27,25 @@ class ExampleController extends AbstractController
     /** @Route("datasheets", name="datasheets") */
     public function datasheetsAction()
     {
-        /**
-         * Array datasheet
-         */
+        /** Array datasheet */
 
-        $arrayDatasheet = $this->datasheetFactory
-            ->createNew()
-            ->setData([
-                ['id' => 1, 'name' => 'John', 'age' => '32'],
-                ['id' => 2, 'name' => 'David', 'age' => '24'],
-                ['id' => 3, 'name' => 'Peter', 'age' => '28'],
-            ]);
+        $data = [
+            ['id' => 1, 'name' => 'John', 'age' => '32'],
+            ['id' => 2, 'name' => 'David', 'age' => '24'],
+            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
+        ];
+        $arrayDatasheet = new Datasheet($data);
 
-        /**
-         * Query builder datasheet
-         *
-         * Create queryBuilder from repository and define alias, only object fields will be available.
-         * In this case you may call related fields in format: writer.address.street
-         */
+        /** Query builder datasheet */
 
         $queryBuilder = $this->entityManager
             ->getRepository('App:Book')
             ->createQueryBuilder('b');
 
-        $queryBuilderDatasheet = $this->datasheetFactory
-            ->createNew()
-            ->setQueryBuilder($queryBuilder)
-            ->setFieldOptions('author', ['filterBy' => 'name']);
+        $queryBuilderDatasheet = new Datasheet($queryBuilder);
+//            ->setFieldOptions('author', ['filterBy' => 'name']);
 
-        /**
-         * Advanced query builder datasheet
-         *
-         * Create queryBuilder and select additional fields (not only from Object)
-         * In this case you can not call related fields in format: writer.address.street,
-         * you must select it in DQL manually: ->addSelect('another_alias.field_name')
-         */
+        /** Complex query builder datasheet */
 
         $queryBuilder = $this->entityManager
             ->getRepository('App:Writer')
@@ -70,13 +55,9 @@ class ExampleController extends AbstractController
             ->addSelect('b.title')
             ->join('w.books', 'b');
 
-        $advancedQueryBuilderDatasheet = $this->datasheetFactory
-            ->createNew()
-            ->setQueryBuilder($queryBuilder);
+        $advancedQueryBuilderDatasheet = new Datasheet($queryBuilder);
 
-        /**
-         * Rendering examples
-         */
+        /** Rendering examples */
 
         return $this->render('examples/examples.datasheets.html.twig', [
             'arrayDatasheet' => $arrayDatasheet,
