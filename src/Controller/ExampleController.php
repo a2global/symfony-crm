@@ -42,7 +42,8 @@ class ExampleController extends AbstractController
             ->getRepository('App:Book')
             ->createQueryBuilder('b');
 
-        $queryBuilderDatasheet = new Datasheet($queryBuilder);
+        $queryBuilderDatasheet = (new Datasheet($queryBuilder))
+            ->setItemsPerPage(5);
 //            ->setFieldOptions('author', ['filterBy' => 'name']);
 
         /** Complex query builder datasheet */
@@ -59,9 +60,10 @@ class ExampleController extends AbstractController
             ->setParameter('date', '2020-01-01 00:00:00')
             ;
 //        $sql = $queryBuilder->getQuery()->getSQL();
-        $res = $queryBuilder->getQuery()->getArrayResult();
+//        $res = $queryBuilder->getQuery()->getArrayResult();
 
-        $advancedQueryBuilderDatasheet = new Datasheet($queryBuilder);
+        $advancedQueryBuilderDatasheet = (new Datasheet($queryBuilder))
+            ->setItemsPerPage(5);
 
         /** Rendering examples */
 
