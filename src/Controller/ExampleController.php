@@ -53,7 +53,13 @@ class ExampleController extends AbstractController
             ->addSelect('w.id')
             ->addSelect('w.name')
             ->addSelect('b.title')
-            ->join('w.books', 'b');
+            ->addSelect('b.publishedAt AS lalalala')
+            ->andWhere('b.publishedAt > :date')
+            ->join('w.books', 'b')
+            ->setParameter('date', '2020-01-01 00:00:00')
+            ;
+//        $sql = $queryBuilder->getQuery()->getSQL();
+        $res = $queryBuilder->getQuery()->getArrayResult();
 
         $advancedQueryBuilderDatasheet = new Datasheet($queryBuilder);
 
