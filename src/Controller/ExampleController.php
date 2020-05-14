@@ -49,8 +49,7 @@ class ExampleController extends AbstractController
         $arrayDatasheet = new Datasheet($data);
         $arrayDatasheet
             ->setItemsPerPage(5)
-            ->setItemsTotal(700)
-        ;
+            ->setItemsTotal(700);
 
         /** Query builder datasheet */
 
@@ -61,7 +60,7 @@ class ExampleController extends AbstractController
         $queryBuilderDatasheet = (new Datasheet($queryBuilder))
             ->setItemsPerPage(5)
             ->showFields('pages', 'price', 'title')
-            ->addFieldHandler('title', function($item){
+            ->addFieldHandler('title', function ($item) {
                 return strtoupper($item['title']);
             });
 //            ->setFieldOptions('author', ['filterBy' => 'name']);
@@ -77,8 +76,7 @@ class ExampleController extends AbstractController
             ->addSelect('b.publishedAt AS lalalala')
             ->andWhere('b.publishedAt > :date')
             ->join('w.books', 'b')
-            ->setParameter('date', '2020-01-01 00:00:00')
-            ;
+            ->setParameter('date', '2020-01-01 00:00:00');
 //        $sql = $queryBuilder->getQuery()->getSQL();
 //        $res = $queryBuilder->getQuery()->getArrayResult();
 
