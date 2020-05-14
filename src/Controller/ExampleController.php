@@ -34,6 +34,10 @@ class ExampleController extends AbstractController
          * $this->disableFilters
          * summary
          * field options
+         * text field
+         * show fields array/qb
+         * remove fields array/qb
+         *
          */
 
 
@@ -62,9 +66,8 @@ class ExampleController extends AbstractController
         $arrayDatasheet
             ->setItemsPerPage(5)
             ->setItemsTotal(700)
-            ->setField('name', 'bebebe');
-
-
+            ->removeFields('id')
+;
         /** Query builder datasheet */
 
         $queryBuilder = $this->entityManager
@@ -80,7 +83,9 @@ class ExampleController extends AbstractController
             ->setField('author.name', 'Alias')
             ->addFieldHandler('title', function ($item) {
                 return strtoupper($item['author.name']);
-            });;
+            })
+            ->removeFields('publishedAt');
+        ;
 
 
         /** Complex query builder datasheet */
