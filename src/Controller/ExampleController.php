@@ -29,9 +29,6 @@ class ExampleController extends AbstractController
     {
         /**
          *
-         *
-         *
-         *
          * qb showField('company.name') - tries to filter
          * addFieldHandler($item['company___name'])
          * $this->disableFilters
