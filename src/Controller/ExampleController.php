@@ -33,8 +33,24 @@ class ExampleController extends AbstractController
             ['id' => 1, 'name' => 'John', 'age' => '32'],
             ['id' => 2, 'name' => 'David', 'age' => '24'],
             ['id' => 3, 'name' => 'Peter', 'age' => '28'],
+            ['id' => 1, 'name' => 'John', 'age' => '32'],
+            ['id' => 2, 'name' => 'David', 'age' => '24'],
+            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
+            ['id' => 1, 'name' => 'John', 'age' => '32'],
+            ['id' => 2, 'name' => 'David', 'age' => '24'],
+            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
+            ['id' => 1, 'name' => 'John', 'age' => '32'],
+            ['id' => 2, 'name' => 'David', 'age' => '24'],
+            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
+            ['id' => 1, 'name' => 'John', 'age' => '32'],
+            ['id' => 2, 'name' => 'David', 'age' => '24'],
+            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
         ];
         $arrayDatasheet = new Datasheet($data);
+        $arrayDatasheet
+            ->setItemsPerPage(5)
+            ->setItemsTotal(700)
+        ;
 
         /** Query builder datasheet */
 
