@@ -44,7 +44,10 @@ class ExampleController extends AbstractController
 
         $queryBuilderDatasheet = (new Datasheet($queryBuilder))
             ->setItemsPerPage(5)
-            ->showFields('pages', 'price', 'title');
+            ->showFields('pages', 'price', 'title')
+            ->addFieldHandler('title', function($item){
+                return strtoupper($item['title']);
+            });
 //            ->setFieldOptions('author', ['filterBy' => 'name']);
 
         /** Complex query builder datasheet */
