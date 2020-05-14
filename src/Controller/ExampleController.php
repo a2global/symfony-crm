@@ -33,7 +33,7 @@ class ExampleController extends AbstractController
          * addFieldHandler($item['company___name'])
          * $this->disableFilters
          * summary
-         *
+         * field options
          */
 
 
@@ -57,11 +57,12 @@ class ExampleController extends AbstractController
             ['id' => 3, 'name' => 'Peter', 'age' => '28'],
         ];
         $arrayDatasheet = new Datasheet(function ($limit, $offset) use ($data) {
-            return [];
+            return $data;
         });
         $arrayDatasheet
             ->setItemsPerPage(5)
-            ->setItemsTotal(700);
+            ->setItemsTotal(700)
+            ->setField('name', 'bebebe');
 
 
         /** Query builder datasheet */
@@ -76,6 +77,7 @@ class ExampleController extends AbstractController
                 'pages' => 778,
                 'price' => '91`368,99',
             ])
+            ->setField('author.name', 'Alias')
             ->addFieldHandler('title', function ($item) {
                 return strtoupper($item['author.name']);
             });;
