@@ -80,8 +80,7 @@ class ExampleController extends AbstractController
 //            ->setItemsPerPage(5)
 //            ->showFields('author.name')
             ->addFieldHandler('title', function ($item) {
-                dd($item);
-                return strtoupper($item['title']);
+                return strtoupper($item['author.name']);
             });
         ;
 
