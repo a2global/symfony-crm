@@ -33,7 +33,7 @@ class ExampleController extends AbstractController
          *
          *
          * qb showField('company.name') - tries to filter
-         *
+         * addFieldHandler($item['company___name'])
          *
          */
 
@@ -78,10 +78,11 @@ class ExampleController extends AbstractController
 
         $queryBuilderDatasheet = (new Datasheet($queryBuilder))
 //            ->setItemsPerPage(5)
-            ->showFields('author.name')
-//            ->addFieldHandler('title', function ($item) {
-//                return strtoupper($item['title']);
-//            });
+//            ->showFields('author.name')
+            ->addFieldHandler('title', function ($item) {
+                dd($item);
+                return strtoupper($item['title']);
+            });
         ;
 
 
