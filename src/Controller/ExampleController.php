@@ -27,6 +27,18 @@ class ExampleController extends AbstractController
     /** @Route("datasheets", name="datasheets") */
     public function datasheetsAction()
     {
+        /**
+         *
+         *
+         *
+         *
+         * qb showField('company.name') - tries to filter
+         *
+         *
+         */
+
+
+
         /** Array datasheet */
 
         $data = [
@@ -50,8 +62,13 @@ class ExampleController extends AbstractController
             return [];
         });
         $arrayDatasheet
-            ->setItemsPerPage(5);
-//            ->setItemsTotal(700);
+            ->setItemsPerPage(5)
+            ->setItemsTotal(700);
+
+
+
+
+
 
         /** Query builder datasheet */
 
@@ -60,12 +77,17 @@ class ExampleController extends AbstractController
             ->createQueryBuilder('b');
 
         $queryBuilderDatasheet = (new Datasheet($queryBuilder))
-            ->setItemsPerPage(5)
-            ->showFields('pages', 'price', 'title')
-            ->addFieldHandler('title', function ($item) {
-                return strtoupper($item['title']);
-            });
-//            ->setFieldOptions('author', ['filterBy' => 'name']);
+//            ->setItemsPerPage(5)
+            ->showFields('author.name')
+//            ->addFieldHandler('title', function ($item) {
+//                return strtoupper($item['title']);
+//            });
+        ;
+
+
+
+
+
 
         /** Complex query builder datasheet */
 
@@ -79,8 +101,6 @@ class ExampleController extends AbstractController
             ->andWhere('b.publishedAt > :date')
             ->join('w.books', 'b')
             ->setParameter('date', '2020-01-01 00:00:00');
-//        $sql = $queryBuilder->getQuery()->getSQL();
-//        $res = $queryBuilder->getQuery()->getArrayResult();
 
         $advancedQueryBuilderDatasheet = (new Datasheet($queryBuilder))
             ->setItemsPerPage(5);
