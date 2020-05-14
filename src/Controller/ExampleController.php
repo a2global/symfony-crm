@@ -46,7 +46,9 @@ class ExampleController extends AbstractController
             ['id' => 2, 'name' => 'David', 'age' => '24'],
             ['id' => 3, 'name' => 'Peter', 'age' => '28'],
         ];
-        $arrayDatasheet = new Datasheet($data);
+        $arrayDatasheet = new Datasheet(function($limit, $offset) use ($data){
+            return $data;
+        });
         $arrayDatasheet
             ->setItemsPerPage(5)
             ->setItemsTotal(700);
