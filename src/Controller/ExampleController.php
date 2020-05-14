@@ -34,9 +34,9 @@ class ExampleController extends AbstractController
          *
          * qb showField('company.name') - tries to filter
          * addFieldHandler($item['company___name'])
+         * $this->disableFilters
          *
          */
-
 
 
         /** Array datasheet */
@@ -58,16 +58,12 @@ class ExampleController extends AbstractController
             ['id' => 2, 'name' => 'David', 'age' => '24'],
             ['id' => 3, 'name' => 'Peter', 'age' => '28'],
         ];
-        $arrayDatasheet = new Datasheet(function($limit, $offset) use ($data){
+        $arrayDatasheet = new Datasheet(function ($limit, $offset) use ($data) {
             return [];
         });
         $arrayDatasheet
             ->setItemsPerPage(5)
             ->setItemsTotal(700);
-
-
-
-
 
 
         /** Query builder datasheet */
@@ -79,14 +75,10 @@ class ExampleController extends AbstractController
         $queryBuilderDatasheet = (new Datasheet($queryBuilder))
 //            ->setItemsPerPage(5)
 //            ->showFields('author.name')
+            ->disableFilters(true)
             ->addFieldHandler('title', function ($item) {
                 return strtoupper($item['author.name']);
-            });
-        ;
-
-
-
-
+            });;
 
 
         /** Complex query builder datasheet */
