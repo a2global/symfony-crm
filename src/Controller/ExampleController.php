@@ -47,11 +47,11 @@ class ExampleController extends AbstractController
             ['id' => 3, 'name' => 'Peter', 'age' => '28'],
         ];
         $arrayDatasheet = new Datasheet(function($limit, $offset) use ($data){
-            return $data;
+            return [];
         });
         $arrayDatasheet
-            ->setItemsPerPage(5)
-            ->setItemsTotal(700);
+            ->setItemsPerPage(5);
+//            ->setItemsTotal(700);
 
         /** Query builder datasheet */
 
