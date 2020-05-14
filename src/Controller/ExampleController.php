@@ -35,6 +35,7 @@ class ExampleController extends AbstractController
          * qb showField('company.name') - tries to filter
          * addFieldHandler($item['company___name'])
          * $this->disableFilters
+         * summary
          *
          */
 
@@ -73,9 +74,11 @@ class ExampleController extends AbstractController
             ->createQueryBuilder('b');
 
         $queryBuilderDatasheet = (new Datasheet($queryBuilder))
-//            ->setItemsPerPage(5)
-//            ->showFields('author.name')
             ->disableFilters(true)
+            ->addSummary([
+                'pages' => 778,
+                'price' => '91`368,99',
+            ])
             ->addFieldHandler('title', function ($item) {
                 return strtoupper($item['author.name']);
             });;
