@@ -75,16 +75,16 @@ class ExampleController extends AbstractController
             ->createQueryBuilder('b');
 
         $queryBuilderDatasheet = (new Datasheet($queryBuilder))
-            ->disableFilters(true)
+//            ->disableFilters(true)
             ->addSummary([
                 'pages' => 778,
                 'price' => '91`368,99',
             ])
-            ->setField('author.name', 'Alias')
-            ->addFieldHandler('title', function ($item) {
-                return strtoupper($item['author.name']);
-            })
-            ->removeFields('publishedAt');
+//            ->setField('author.name', 'Alias')
+//            ->addFieldHandler('title', function ($item) {
+//                return strtoupper($item['author.name']);
+//            })
+//            ->removeFields('publishedAt');
         ;
 
 
