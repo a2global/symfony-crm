@@ -109,7 +109,8 @@ class ExampleController extends AbstractController
         $arrayDatasheet
             ->setItemsPerPage(5)
             ->setItemsTotal(700)
-            ->removeFields('id');
+//            ->removeFields('id')
+            ;
         /** Query builder datasheet */
 
         $queryBuilder = $this->entityManager
