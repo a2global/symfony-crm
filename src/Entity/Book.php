@@ -27,6 +27,11 @@ class Book
     private $publishedAt;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastReadAt;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $pages;
@@ -111,6 +116,22 @@ class Book
         $this->author = $author;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastReadAt()
+    {
+        return $this->lastReadAt;
+    }
+
+    /**
+     * @param mixed $lastReadAt
+     */
+    public function setLastReadAt($lastReadAt): void
+    {
+        $this->lastReadAt = $lastReadAt;
     }
 
 }

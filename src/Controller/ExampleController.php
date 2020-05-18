@@ -39,7 +39,7 @@ class ExampleController extends AbstractController
     /** @Route("forms", name="forms") */
     public function formsAction()
     {
-        $book = new Book();
+        $book = $this->entityManager->getRepository('App:Book')->find(1);
 
         $bookForm = $this->formFactory
             ->getFor($book)
@@ -53,15 +53,18 @@ class ExampleController extends AbstractController
     /** @Route("forms/handle", name="forms_handle") */
     public function formHandleAction(Request $request)
     {
-        $book = new Book();
+        $book = $this->entityManager->getRepository('App:Book')->find(1);
         $entity = $this->entityInfoProvider->getEntity($book);
         $data = $request->request->get('data');
 
-        dd($data);
         foreach ($data as $field => $value) {
             $field = $entity->getField($field);
-            $field->setValueToObject($value, $transaction);
+            $field->setValueToObject($value, $book);
         }
+
+        $this->entityManager->flush();
+
+        return $this->redirectToRoute('examples_forms');
     }
 
     /** @Route("datasheets", name="datasheets") */
