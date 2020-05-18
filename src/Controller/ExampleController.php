@@ -109,7 +109,6 @@ class ExampleController extends AbstractController
         $arrayDatasheet
             ->setItemsPerPage(5)
             ->setItemsTotal(700)
-//            ->removeFields('id')
             ;
         /** Query builder datasheet */
 
