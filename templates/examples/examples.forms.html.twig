@@ -1,0 +1,13 @@
+{% extends '@A2CRM/layout.html.twig' %}
+
+{% block content %}
+
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label">{{ bookForm.fields['publishedAt'].title|trans }}</label>
+        <div class="col-sm-8">
+            {{ form_field(bookForm.fields['publishedAt']) }}
+        </div>
+    </div>
+
+{%  endblock %}

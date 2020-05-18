@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use A2Global\CRMBundle\Datasheet\Datasheet;
 use A2Global\CRMBundle\Factory\DatasheetFactory;
+use A2Global\CRMBundle\Factory\FormFactory;
+use App\Entity\Book;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,13 +17,31 @@ class ExampleController extends AbstractController
 
     private $datasheetFactory;
 
+    private $formFactory;
+
     public function __construct(
         EntityManagerInterface $entityManager,
-        DatasheetFactory $datasheetFactory
+        DatasheetFactory $datasheetFactory,
+        FormFactory $formFactory
     )
     {
         $this->entityManager = $entityManager;
         $this->datasheetFactory = $datasheetFactory;
+        $this->formFactory = $formFactory;
+    }
+
+    /** @Route("forms", name="forms") */
+    public function formsAction()
+    {
+        $book = new Book();
+
+        $bookForm = $this->formFactory
+            ->getFor($book)
+            ->setUrl('aaa');
+
+        return $this->render('examples/examples.forms.html.twig', [
+            'bookForm' => $bookForm,
+        ]);
     }
 
     /** @Route("datasheets", name="datasheets") */
