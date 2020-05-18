@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<form action="{{ bookForm.url }}" method="POST" class="form-horizontal">
 
     <div class="form-group">
         <label class="col-sm-4 control-label">{{ bookForm.fields['publishedAt'].title|trans }}</label>
@@ -9,5 +10,9 @@
             {{ form_field(bookForm.fields['publishedAt']) }}
         </div>
     </div>
+
+    <input type="submit" value="Submit">
+
+</form>
 
 {%  endblock %}

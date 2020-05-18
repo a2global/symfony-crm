@@ -5,9 +5,11 @@ namespace App\Controller;
 use A2Global\CRMBundle\Datasheet\Datasheet;
 use A2Global\CRMBundle\Factory\DatasheetFactory;
 use A2Global\CRMBundle\Factory\FormFactory;
+use A2Global\CRMBundle\Provider\EntityInfoProvider;
 use App\Entity\Book;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /** @Route("/examples/", name="examples_") */
@@ -19,15 +21,19 @@ class ExampleController extends AbstractController
 
     private $formFactory;
 
+    private $entityInfoProvider;
+
     public function __construct(
         EntityManagerInterface $entityManager,
         DatasheetFactory $datasheetFactory,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        EntityInfoProvider $entityInfoProvider
     )
     {
         $this->entityManager = $entityManager;
         $this->datasheetFactory = $datasheetFactory;
         $this->formFactory = $formFactory;
+        $this->entityInfoProvider = $entityInfoProvider;
     }
 
     /** @Route("forms", name="forms") */
@@ -37,11 +43,25 @@ class ExampleController extends AbstractController
 
         $bookForm = $this->formFactory
             ->getFor($book)
-            ->setUrl('aaa');
+            ->setUrl($this->generateUrl('examples_forms_handle'));
 
         return $this->render('examples/examples.forms.html.twig', [
             'bookForm' => $bookForm,
         ]);
+    }
+
+    /** @Route("forms/handle", name="forms_handle") */
+    public function formHandleAction(Request $request)
+    {
+        $book = new Book();
+        $entity = $this->entityInfoProvider->getEntity($book);
+        $data = $request->request->get('data');
+
+        dd($data);
+        foreach ($data as $field => $value) {
+            $field = $entity->getField($field);
+            $field->setValueToObject($value, $transaction);
+        }
     }
 
     /** @Route("datasheets", name="datasheets") */
@@ -86,8 +106,7 @@ class ExampleController extends AbstractController
         $arrayDatasheet
             ->setItemsPerPage(5)
             ->setItemsTotal(700)
-            ->removeFields('id')
-;
+            ->removeFields('id');
         /** Query builder datasheet */
 
         $queryBuilder = $this->entityManager
