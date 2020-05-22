@@ -83,29 +83,17 @@ class ExampleController extends AbstractController
          *
          */
 
-
         /** Array datasheet */
 
         $data = [
-            ['id' => 1, 'name' => 'John', 'age' => '32'],
-            ['id' => 2, 'name' => 'David', 'age' => '24'],
-            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
-            ['id' => 1, 'name' => 'John', 'age' => '32'],
-            ['id' => 2, 'name' => 'David', 'age' => '24'],
-            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
-            ['id' => 1, 'name' => 'John', 'age' => '32'],
-            ['id' => 2, 'name' => 'David', 'age' => '24'],
-            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
-            ['id' => 1, 'name' => 'John', 'age' => '32'],
-            ['id' => 2, 'name' => 'David', 'age' => '24'],
-            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
-            ['id' => 1, 'name' => 'John', 'age' => '32'],
-            ['id' => 2, 'name' => 'David', 'age' => '24'],
-            ['id' => 3, 'name' => 'Peter', 'age' => '28'],
+            ['id' => 1, 'name' => 'Alpha',      'age' => '10'],
+            ['id' => 2, 'name' => 'Bravo',      'age' => '10'],
+            ['id' => 3, 'name' => 'Charlie',    'age' => '20'],
+            ['id' => 4, 'name' => 'Delta',      'age' => '20'],
+            ['id' => 5, 'name' => 'Eagle',      'age' => '30'],
+            ['id' => 6, 'name' => 'Force',      'age' => '30'],
         ];
-        $arrayDatasheet = new Datasheet(function ($limit, $offset) use ($data) {
-            return $data;
-        });
+        $arrayDatasheet = new Datasheet($data);
         $arrayDatasheet
             ->setItemsPerPage(5)
             ->setItemsTotal(700)
