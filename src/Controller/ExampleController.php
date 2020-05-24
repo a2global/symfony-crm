@@ -41,6 +41,7 @@ class ExampleController extends AbstractController
     /** @Route("forms", name="forms") */
     public function formsAction()
     {
+
         $book = $this->entityManager->getRepository('App:Book')->find(1);
 
         $bookForm = $this->formFactory
@@ -72,6 +73,7 @@ class ExampleController extends AbstractController
     /** @Route("datasheets", name="datasheets") */
     public function datasheetsAction()
     {
+//        $a = 7 / 0;
         /**
          *
          * qb showField('company.name') - tries to filter
