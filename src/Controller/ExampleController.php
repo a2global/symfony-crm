@@ -73,7 +73,6 @@ class ExampleController extends AbstractController
     /** @Route("datasheets", name="datasheets") */
     public function datasheetsAction()
     {
-//        $a = 7 / 0;
         /**
          *
          * qb showField('company.name') - tries to filter

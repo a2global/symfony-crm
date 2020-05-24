@@ -3,13 +3,8 @@
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+#    'xoxb-782490166337-1135746424246-8ErnNgnm7BvJzfuxQqAPDM0K'
 parameters:
-
-#    a2crm.logger.slack.errors: true
-    a2crm.logger.slack.requests: true
-    a2crm.logger.slack.channel.requests: 'datenbanks-logs-dev'
-    a2crm.logger.slack.token: 'xoxp-782490166337-788457937860-788506590596-e9476264438f467786a8ac542c8d8074'
-#    a2crm.logger.slack.channel.requ: 'datenbanks-dev'
 
 services:
     # default configuration for services in *this* file
