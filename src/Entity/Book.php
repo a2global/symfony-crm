@@ -27,11 +27,6 @@ class Book
     private $publishedAt;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $lastReadAt;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $pages;
@@ -52,6 +47,11 @@ class Book
      * )
      */
     private $author;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $originallyEnglish;
 
     public function getId(): ?int
     {
@@ -132,6 +132,18 @@ class Book
     public function setLastReadAt($lastReadAt): void
     {
         $this->lastReadAt = $lastReadAt;
+    }
+
+    public function getOriginallyEnglish(): ?bool
+    {
+        return $this->originallyEnglish;
+    }
+
+    public function setOriginallyEnglish(bool $originallyEnglish): self
+    {
+        $this->originallyEnglish = $originallyEnglish;
+
+        return $this;
     }
 
 }

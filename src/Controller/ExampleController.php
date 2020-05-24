@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use A2Global\CRMBundle\Component\Datasheet\FieldType\TypeMoney;
 use A2Global\CRMBundle\Datasheet\Datasheet;
 use A2Global\CRMBundle\Factory\DatasheetFactory;
 use A2Global\CRMBundle\Factory\FormFactory;
 use A2Global\CRMBundle\Provider\EntityInfoProvider;
 use App\Entity\Book;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -85,19 +87,13 @@ class ExampleController extends AbstractController
 
         /** Array datasheet */
 
-        $data = [
-            ['id' => 1, 'name' => 'Alpha',      'age' => '10'],
-            ['id' => 2, 'name' => 'Bravo',      'age' => '10'],
-            ['id' => 3, 'name' => 'Charlie',    'age' => '20'],
-            ['id' => 4, 'name' => 'Delta',      'age' => '20'],
-            ['id' => 5, 'name' => 'Eagle',      'age' => '30'],
-            ['id' => 6, 'name' => 'Force',      'age' => '30'],
-        ];
+        $data = $this->getSampleArray();
         $arrayDatasheet = new Datasheet($data);
         $arrayDatasheet
             ->setItemsPerPage(5)
-            ->setItemsTotal(700)
-            ;
+            ->setField('price', ['type' => TypeMoney::class,]);
+
+
         /** Query builder datasheet */
 
         $queryBuilder = $this->entityManager
@@ -105,11 +101,11 @@ class ExampleController extends AbstractController
             ->createQueryBuilder('b');
 
         $queryBuilderDatasheet = (new Datasheet($queryBuilder))
-//            ->disableFilters(true)
-            ->addSummary([
-                'pages' => 778,
-                'price' => '91`368,99',
-            ])
+            ->disableFilters()
+//            ->addSummary([
+//                'pages' => 778,
+//                'price' => '91`368,99',
+//            ])
 //            ->setField('author.name', 'Alias')
 //            ->addFieldHandler('title', function ($item) {
 //                return strtoupper($item['author.name']);
@@ -141,5 +137,33 @@ class ExampleController extends AbstractController
             'queryBuilderDatasheet' => $queryBuilderDatasheet,
             'advancedQueryBuilderDatasheet' => $advancedQueryBuilderDatasheet,
         ]);
+    }
+
+    protected function getSampleArray()
+    {
+        $dir = sprintf('%s/{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*,}', $this->getParameter('kernel.project_dir'));
+        $dir = sprintf('%s/{*,*/*,*/*/*}', $this->getParameter('kernel.project_dir'));
+        $data = [];
+        $i = 0;
+
+        foreach (glob($dir, GLOB_BRACE) as $file) {
+            if (is_dir($file)) {
+                continue;
+            }
+            ++$i;
+            $pathinfo = pathinfo($file);
+
+            $data[] = [
+                'id' => $i,
+                'filename' => $pathinfo['filename'],
+                'extension' => $pathinfo['extension'] ?? '',
+                'size' => filesize($file),
+                'price' => filesize($file),
+                'updatedAt' => new Datetime(date(DATE_ATOM, filemtime($file))),
+                'path' => $file,
+            ];
+        }
+
+        return $data;
     }
 }
