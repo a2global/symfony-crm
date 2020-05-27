@@ -7,7 +7,6 @@ use A2Global\CRMBundle\Datasheet\Datasheet;
 use A2Global\CRMBundle\Factory\DatasheetFactory;
 use A2Global\CRMBundle\Factory\FormFactory;
 use A2Global\CRMBundle\Provider\EntityInfoProvider;
-use App\Entity\Book;
 use App\Repository\BookRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -102,19 +101,7 @@ class ExampleController extends AbstractController
         $queryBuilder = $this->entityManager
             ->getRepository('App:Book')
             ->createQueryBuilder('b');
-
-        $queryBuilderDatasheet = (new Datasheet($queryBuilder))
-            ->disableFilters()
-//            ->addSummary([
-//                'pages' => 778,
-//                'price' => '91`368,99',
-//            ])
-//            ->setField('author.name', 'Alias')
-//            ->addFieldHandler('title', function ($item) {
-//                return strtoupper($item['author.name']);
-//            })
-//            ->removeFields('publishedAt');
-        ;
+        $queryBuilderDatasheet = (new Datasheet($queryBuilder));
 
 
         /** Complex query builder datasheet */
@@ -139,14 +126,10 @@ class ExampleController extends AbstractController
                 'd',
                 Join::WITH,
                 'd.livedTill > :date'
-            );
+            )
+            ->addOrderBy('a.name', 'DESC');
 
-//
         $advancedQueryBuilderDatasheet = new Datasheet($qb);
-        $advancedQueryBuilderDatasheet
-//            ->disableFilters()
-            ->setItemsPerPage(5)
-        ;
 
         /** Rendering examples */
 
