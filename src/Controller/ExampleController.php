@@ -8,8 +8,10 @@ use A2Global\CRMBundle\Factory\DatasheetFactory;
 use A2Global\CRMBundle\Factory\FormFactory;
 use A2Global\CRMBundle\Provider\EntityInfoProvider;
 use App\Entity\Book;
+use App\Repository\BookRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\Expr\Join;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -117,19 +119,34 @@ class ExampleController extends AbstractController
 
         /** Complex query builder datasheet */
 
-        $queryBuilder = $this->entityManager
-            ->getRepository('App:Writer')
-            ->createQueryBuilder('w')
-            ->addSelect('w.id')
-            ->addSelect('w.name')
-            ->addSelect('b.title')
-            ->addSelect('b.publishedAt AS lalalala')
-            ->andWhere('b.publishedAt > :date')
-            ->join('w.books', 'b')
-            ->setParameter('date', '2020-01-01 00:00:00');
 
-        $advancedQueryBuilderDatasheet = (new Datasheet($queryBuilder))
-            ->setItemsPerPage(5);
+        /** @var BookRepository $br */
+        $br = $this->entityManager->getRepository('App:Book');
+
+        $qb = $br
+            ->createQueryBuilder('b')
+            ->select('b.title')
+            ->addSelect('b.price')
+            ->addSelect('a.name')
+            ->addSelect('d.street')
+            ->addSelect('d.livedTill')
+            ->setParameters([
+                'date' => '2020-05-01',
+            ])
+            ->join('b.author', 'a')
+            ->leftJoin(
+                'a.address',
+                'd',
+                Join::WITH,
+                'd.livedTill > :date'
+            );
+
+//
+        $advancedQueryBuilderDatasheet = new Datasheet($qb);
+        $advancedQueryBuilderDatasheet
+//            ->disableFilters()
+            ->setItemsPerPage(5)
+        ;
 
         /** Rendering examples */
 

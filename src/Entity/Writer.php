@@ -29,6 +29,14 @@ class Writer
      */
     private $books;
 
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="Address",
+     *     mappedBy="author"
+     * )
+     */
+    private $address;
+
     public function __toString()
     {
         return $this->getName();
@@ -50,4 +58,31 @@ class Writer
 
         return $this;
     }
+
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param mixed $books
+     */
+    public function setBooks($books): void
+    {
+        $this->books = $books;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address): void
+    {
+        $this->address = $address;
+    }
+
 }
