@@ -127,7 +127,7 @@ class ExampleController extends AbstractController
                 Join::WITH,
                 'd.livedTill > :date'
             )
-            ->addOrderBy('a.name', 'DESC');
+            ->orderBy('d.livedTill', 'DESC');
 
         $advancedQueryBuilderDatasheet = new Datasheet($qb);
 
@@ -162,6 +162,12 @@ class ExampleController extends AbstractController
                 'price' => filesize($file),
                 'updatedAt' => new Datetime(date(DATE_ATOM, filemtime($file))),
                 'path' => $file,
+                'filename2' => $pathinfo['filename'],
+                'extension2' => $pathinfo['extension'] ?? '',
+                'size2' => filesize($file),
+                'price2' => filesize($file),
+                'updatedAt2' => new Datetime(date(DATE_ATOM, filemtime($file))),
+                'path2' => $file,
             ];
         }
 
