@@ -103,7 +103,6 @@ class ExampleController extends AbstractController
             ->createQueryBuilder('b');
         $queryBuilderDatasheet = (new Datasheet($queryBuilder));
 
-
         /** Complex query builder datasheet */
 
 
@@ -112,7 +111,7 @@ class ExampleController extends AbstractController
 
         $qb = $br
             ->createQueryBuilder('b')
-            ->select('b.title')
+            ->addSelect('b.title')
             ->addSelect('b.price')
             ->addSelect('a.name')
             ->addSelect('d.street')
