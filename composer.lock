@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../crm-bundle",
-                "reference": "893c00096e1d7d1bc6314999e63b035d3e899276"
+                "reference": "4d59df5485a943b98e486c004fc5a7722a1f2a56"
             },
             "require": {
                 "doctrine/inflector": "^1.3",
