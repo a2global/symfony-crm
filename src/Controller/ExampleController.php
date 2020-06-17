@@ -92,8 +92,12 @@ class ExampleController extends AbstractController
         $data = $this->getSampleArray();
         $arrayDatasheet = new Datasheet($data);
         $arrayDatasheet
+            ->addFieldHandler('filename', function($item){
+                return sprintf('%s (id: %s)', $item['filename'], $item['id']);
+            })
             ->setItemsPerPage(5)
-            ->setField('price', ['type' => TypeMoney::class,]);
+            ->setField('price', ['type' => TypeMoney::class,])
+            ->removeFields('id');
 
 
         /** Query builder datasheet */
